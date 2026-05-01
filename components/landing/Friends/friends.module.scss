@@ -1,0 +1,201 @@
+@use "@/styles/colors" as *;
+@use "@/styles/spacing" as *;
+@use "@/styles/typography" as *;
+@use "@/styles/common-mixins" as *;
+@use "@/styles/media-mixins" as *;
+
+.section {
+  padding: $spacing-100 0;
+  position: relative;
+  overflow: hidden;
+
+  @include mobile {
+    padding: $spacing-64 0;
+  }
+}
+
+.container {
+  @include container;
+  text-align: center;
+  // Sits above the decorative bubble layer so polaroids stay clickable
+  // and copy reads against the page bg, not the bubbles.
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-extrabold;
+  margin-bottom: $spacing-12;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin: 0 auto $spacing-48;
+  max-width: 640px;
+  // The translation contains an explicit `\n` at the natural pause
+  // (after the em dash). `pre-line` honors that break on desktop while
+  // still letting the browser wrap each clause on narrow viewports.
+  white-space: pre-line;
+}
+
+// The "board" hosts the polaroids. On desktop it's a centered flex
+// row (the friends look pinned to a corkboard with their pre-set
+// rotations). On mobile it becomes a CSS-only scroll-snap carousel —
+// each polaroid is a snap target, neighbors peek from the edges, and
+// native touch handles the swipe so we don't ship JS for it.
+.board {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: $spacing-40;
+  list-style: none;
+  margin: 0;
+  padding: $spacing-32 0;
+
+  @include mobile {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 12vw;
+    gap: $spacing-24;
+    padding: $spacing-32 0;
+    // Bleed past the page container so the leading/trailing polaroids
+    // can peek from the edges before snap-centering.
+    margin-inline: calc(-1 * #{$container-padding-mobile});
+    padding-inline: 12vw;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.boardItem {
+  flex: 0 0 auto;
+  display: block;
+
+  @include mobile {
+    scroll-snap-align: center;
+  }
+}
+
+// Polaroid card — fixed-white surface in both themes (it's a physical
+// photo, not a UI surface). Iconic extra padding at the bottom for
+// the caption, light double-shadow for the "lifted from the page"
+// look. Pre-rotated by position so the row reads as pinned-to-board.
+.polaroid {
+  display: block;
+  width: 240px;
+  background: #ffffff;
+  padding: $spacing-12 $spacing-12 $spacing-24;
+  border-radius: 4px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 16px 32px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: $static-black;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+  will-change: transform;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include mobile {
+    width: 70vw;
+    max-width: 280px;
+  }
+}
+
+// Per-position rotations — every 3rd polaroid resumes the cycle, so
+// adding a 4th friend just continues the rhythm without needing more
+// SCSS rules.
+.boardItem:nth-child(3n + 1) .polaroid { transform: rotate(-3.5deg); }
+.boardItem:nth-child(3n + 2) .polaroid { transform: rotate(1.8deg); }
+.boardItem:nth-child(3n + 3) .polaroid { transform: rotate(-1deg); }
+
+// Hover / focus straightens the polaroid and lifts it forward —
+// scoped here so the per-position rotation doesn't override the
+// hover transform via specificity.
+.boardItem .polaroid:hover,
+.boardItem .polaroid:focus-visible {
+  transform: rotate(0deg) translateY(-6px) scale(1.03);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    0 28px 48px rgba(0, 0, 0, 0.18);
+}
+
+.boardItem .polaroid:focus-visible {
+  outline: 2px solid $focus-ring;
+  outline-offset: 4px;
+}
+
+// Square frame holds the logo. Neutral fill while the image loads;
+// `object-fit: contain` + inner padding so transparent-bg logos don't
+// touch the frame edges.
+.photoFrame {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  background: $gray-100;
+  overflow: hidden;
+  margin-bottom: $spacing-12;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: $spacing-12;
+}
+
+.caption {
+  text-align: center;
+  padding: 0 $spacing-4;
+}
+
+.name {
+  font-family: $font-display;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $gray-900;
+  margin: 0 0 $spacing-4;
+}
+
+.description {
+  color: $gray-600;
+  font-size: $font-size-sm;
+  line-height: 1.4;
+  margin: 0;
+  // Reserve two lines of vertical space so every polaroid lands at
+  // the same height. The longest description (Mapping Bitcoin) takes
+  // two lines; shorter ones get padded by the reserved space rather
+  // than collapsing the card.
+  min-height: calc(1.4em * 2);
+}
+
+// Block-particle separator hugs the bottom of the section, mirroring
+// how `Projects` uses `<PixelDissolve />` as a visual transition into
+// the next section.
+.dissolveWrapper {
+  position: relative;
+  margin-top: $spacing-48;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid {
+    transition: none;
+  }
+
+  .boardItem .polaroid:hover,
+  .boardItem .polaroid:focus-visible {
+    transform: rotate(0deg);
+  }
+}

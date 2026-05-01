@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "siteName": "BitByBit",
+    "siteTitle": "BitByBit — Building our best version, together",
+    "description": "We are a group of people improving every day — healthy habits, community, and open-source software. We build tools for a decentralized and free future.",
+    "keywords": "bitbybit,healthy habits,community,open source,bitcoin,lightning,nostr,argentina,la crypta,free software,decentralization",
+    "ogHeadline": "Building our best version, together",
+    "ogTagline": "Healthy habits, community, and open-source software.",
+    "skipToContent": "Skip to content",
+    "habitsDescription": "Healthy-habit tracker with Bitcoin Lightning rewards.",
+    "arenaDescription": "Public challenges over Nostr — compete, earn badges and sats."
+  },
+  "navbar": {
+    "story": "Story",
+    "projects": "Projects",
+    "friends": "Friends",
+    "support": "Support",
+    "switchToLightMode": "Switch to light mode",
+    "switchToDarkMode": "Switch to dark mode",
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Switch to Spanish"
+  },
+  "footer": {
+    "ariaLabel": "BitByBit projects",
+    "habitsLink": "BitByBit Habits",
+    "arenaLink": "BitByBit Arena",
+    "github": "GitHub",
+    "githubAriaLabel": "BitByBit on GitHub",
+    "rightsReserved": "All rights reserved."
+  },
+  "about": {
+    "story": {
+      "title": "Building our best version, together",
+      "p1": "**BitByBit** started at La Crypta's FOUNDATIONS hackathon in March 2026. The idea was simple: what if people could earn real bitcoin for building good habits? That became **BitByBit Habits** — a family habit tracker where sponsors reward effort with sats over Lightning.",
+      "p2": "The name \"BitByBit\" reflects our philosophy: **small consistent actions, stacked over time, create big results**. Like stacking sats. Like stacking blocks.",
+      "p3": "We are a group of people improving every day — building healthy habits, strengthening community, and shipping tools for a freer future. For the second hackathon (Nostr theme) we launched **BitByBit Arena**: public challenges over the open protocol, no permissions required.",
+      "p4": "We believe in **collaboration** and in a better future for humanity. That's why we work on open-source projects that contribute to **decentralization and freedom**."
+    },
+    "projects": {
+      "title": "Our projects",
+      "habitsName": "BitByBit Habits",
+      "arenaName": "BitByBit Arena",
+      "hackathon": "Hackathon",
+      "habitsHackathon": "FOUNDATIONS (#1) — Lightning",
+      "arenaHackathon": "IDENTITY (#2) — Nostr",
+      "theme": "Theme",
+      "habitsTheme": "Private, family",
+      "arenaTheme": "Public, social",
+      "auth": "Auth",
+      "habitsAuth": "Email/password + Nostr",
+      "arenaAuth": "Nostr only",
+      "users": "Users",
+      "habitsUsers": "Sponsors + members",
+      "arenaUsers": "Any Nostr identity",
+      "rewards": "Rewards",
+      "habitsRewards": "Sponsor pays via NWC",
+      "arenaRewards": "Creator funds, community zaps",
+      "data": "Data",
+      "habitsData": "Private database",
+      "arenaData": "Public Nostr events + cache",
+      "status": "Status",
+      "habitsStatus": "v1.0.0 released",
+      "arenaStatus": "v1.0.0 released",
+      "link": "Link",
+      "habitsLink": "habits.bitbybit.com.ar",
+      "arenaLink": "arena.bitbybit.com.ar"
+    }
+  },
+  "landing": {
+    "friends": {
+      "title": "Our friends",
+      "subtitle": "Projects and communities we admire,\nbuilders of open infrastructure for a freer future.",
+      "listLabel": "Friends of BitByBit",
+      "laCryptaDescription": "Bitcoin community in Argentina",
+      "nostrWotDescription": "Web of Trust for Nostr",
+      "mappingBitcoinDescription": "Find every place in the Bitcoin ecosystem."
+    },
+    "support": {
+      "title": "Support BitByBit",
+      "subtitle": "Open source and community-driven. Help us keep building.",
+      "zapDevs": "Zap the devs",
+      "zapAriaLabel": "Send a Lightning zap to the developers",
+      "starOnGithub": "Star on GitHub",
+      "orContribute": "Or contribute to a specific project",
+      "arenaRepo": "Arena on GitHub",
+      "habitsRepo": "Habits on GitHub"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+@use "@/styles/colors" as *;
+@use "@/styles/spacing" as *;
+@use "@/styles/typography" as *;
+@use "@/styles/z-index" as *;
+@use "@/styles/media-mixins" as *;
+
+.navbar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: $z-index-navbar;
+  background: alpha($color-bg, 70%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.scrolled {
+  background: alpha($color-bg, 88%);
+  border-bottom-color: $color-border;
+}
+
+.inner {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-12 $container-padding;
+  display: flex;
+  align-items: center;
+  gap: $spacing-24;
+
+  @include mobile {
+    padding: $spacing-12 $container-padding-mobile;
+    gap: $spacing-12;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-12;
+  color: $color-text-primary;
+  text-decoration: none;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.logoText {
+  font-family: $font-display;
+  letter-spacing: $letter-spacing-tight;
+}
+
+.links {
+  display: none;
+  gap: $spacing-20;
+  margin-inline-start: auto;
+
+  @include tabletAndUp {
+    display: flex;
+  }
+}
+
+.link {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-text-primary;
+    text-decoration: none;
+  }
+}
+
+// Joined toggle pill — both buttons share a single rounded outer
+// border, with `overflow: hidden` so they read as one segmented
+// control. Mirrors arena's pattern.
+.toggleGroup {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  margin-inline-start: auto;
+
+  @include tabletAndUp {
+    margin-inline-start: 0;
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  font-family: $font-body;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: $color-secondary;
+    background: alpha($color-secondary, 10%);
+  }
+}
+
+// Scroll-progress bar — solid brand yellow tracking document scroll
+// position. Sits on the bottom edge of the navbar so it reads as a
+// reading-progress indicator under the nav row.
+.scrollProgress {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  block-size: 2px;
+  background: $color-secondary;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}

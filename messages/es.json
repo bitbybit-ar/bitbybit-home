@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "siteName": "BitByBit",
+    "siteTitle": "BitByBit — Construyendo nuestra mejor versión, juntos",
+    "description": "Somos un grupo de personas mejorando cada día — hábitos saludables, comunidad y software libre. Construimos herramientas open-source para un futuro descentralizado y libre.",
+    "keywords": "bitbybit,hábitos saludables,comunidad,open source,bitcoin,lightning,nostr,argentina,la crypta,software libre,descentralización",
+    "ogHeadline": "Construyendo nuestra mejor versión, juntos",
+    "ogTagline": "Hábitos saludables, comunidad y software libre.",
+    "skipToContent": "Saltar al contenido",
+    "habitsDescription": "Tracker de hábitos saludables con recompensas en Bitcoin Lightning.",
+    "arenaDescription": "Desafíos públicos sobre Nostr — competí, ganá badges y sats."
+  },
+  "navbar": {
+    "story": "Historia",
+    "projects": "Proyectos",
+    "friends": "Amigos",
+    "support": "Apoyanos",
+    "switchToLightMode": "Cambiar a modo claro",
+    "switchToDarkMode": "Cambiar a modo oscuro",
+    "switchToEnglish": "Cambiar a inglés",
+    "switchToSpanish": "Cambiar a español"
+  },
+  "footer": {
+    "ariaLabel": "Proyectos de BitByBit",
+    "habitsLink": "BitByBit Habits",
+    "arenaLink": "BitByBit Arena",
+    "github": "GitHub",
+    "githubAriaLabel": "BitByBit en GitHub",
+    "rightsReserved": "Todos los derechos reservados."
+  },
+  "about": {
+    "story": {
+      "title": "Construyendo nuestra mejor versión, juntos",
+      "p1": "**BitByBit** nació en la hackathon FOUNDATIONS de La Crypta en marzo de 2026. La idea era simple: ¿y si las personas pudieran ganar bitcoin real por construir buenos hábitos? Así arrancó **BitByBit Habits** — un tracker familiar donde los sponsors premian con sats vía Lightning.",
+      "p2": "El nombre \"BitByBit\" refleja nuestra filosofía: **pequeñas acciones consistentes, apiladas en el tiempo, crean grandes resultados**. Como stackear sats, como apilar bloques.",
+      "p3": "Somos un grupo de personas mejorando cada día — desarrollando hábitos saludables, fortaleciendo comunidad, y construyendo herramientas para un futuro más libre. Para la segunda hackathon (tema Nostr) lanzamos **BitByBit Arena**: desafíos públicos sobre el protocolo abierto, sin permisos.",
+      "p4": "Creemos en la **colaboración** y en un futuro mejor para la humanidad. Por eso trabajamos en proyectos open-source que aporten a la **descentralización y la libertad**."
+    },
+    "projects": {
+      "title": "Nuestros proyectos",
+      "habitsName": "BitByBit Habits",
+      "arenaName": "BitByBit Arena",
+      "hackathon": "Hackathon",
+      "habitsHackathon": "FOUNDATIONS (#1) — Lightning",
+      "arenaHackathon": "IDENTITY (#2) — Nostr",
+      "theme": "Tema",
+      "habitsTheme": "Privado, familiar",
+      "arenaTheme": "Público, social",
+      "auth": "Auth",
+      "habitsAuth": "Email/password + Nostr",
+      "arenaAuth": "Solo Nostr",
+      "users": "Usuarios",
+      "habitsUsers": "Sponsors + miembros",
+      "arenaUsers": "Cualquier identidad Nostr",
+      "rewards": "Recompensas",
+      "habitsRewards": "El sponsor paga vía NWC",
+      "arenaRewards": "El creador fondea, la comunidad zapea",
+      "data": "Datos",
+      "habitsData": "Base de datos privada",
+      "arenaData": "Eventos Nostr públicos + cache",
+      "status": "Estado",
+      "habitsStatus": "v1.0.0 lanzado",
+      "arenaStatus": "v1.0.0 lanzado",
+      "link": "Link",
+      "habitsLink": "habits.bitbybit.com.ar",
+      "arenaLink": "arena.bitbybit.com.ar"
+    }
+  },
+  "landing": {
+    "friends": {
+      "title": "Nuestros amigos",
+      "subtitle": "Proyectos y comunidades que admiramos,\nconstructores de infraestructura abierta para un futuro más libre.",
+      "listLabel": "Amigos de BitByBit",
+      "laCryptaDescription": "Comunidad Bitcoin en Argentina",
+      "nostrWotDescription": "Web of Trust para Nostr",
+      "mappingBitcoinDescription": "Encontrá cada lugar del ecosistema Bitcoin."
+    },
+    "support": {
+      "title": "Apoyá a BitByBit",
+      "subtitle": "Código abierto y hecho por la comunidad. Ayudanos a seguir construyendo.",
+      "zapDevs": "Zapeá a los devs",
+      "zapAriaLabel": "Enviar un zap Lightning a los desarrolladores",
+      "starOnGithub": "Dar estrella en GitHub",
+      "orContribute": "O contribuí a un proyecto específico",
+      "arenaRepo": "Arena en GitHub",
+      "habitsRepo": "Habits en GitHub"
+    }
+  }
+}

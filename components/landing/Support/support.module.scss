@@ -1,0 +1,175 @@
+@use "@/styles/colors" as *;
+@use "@/styles/spacing" as *;
+@use "@/styles/typography" as *;
+@use "@/styles/common-mixins" as *;
+@use "@/styles/media-mixins" as *;
+
+.section {
+  padding: $spacing-64 0;
+  position: relative;
+  overflow: hidden;
+  // No top divider — the Friends section above ends with PixelDissolve
+  // (block-particle separator) which already marks the transition.
+  // The footer's `border-top` still serves as the bottom divider.
+}
+
+.container {
+  @include container;
+  text-align: center;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-extrabold;
+  margin-bottom: $spacing-8;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  margin-bottom: $spacing-32;
+}
+
+// Tier 1: org-level CTAs (zap + star). Branded ceramic buttons sized
+// for the eye to land here first.
+.primaryActions {
+  display: flex;
+  gap: $spacing-16;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-40;
+}
+
+// Visual divider between the CTA tier and the per-project tier.
+// A small label rather than a hard rule so the section keeps a
+// single-block feel.
+.contributeLabel {
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-16;
+}
+
+// Tier 2: per-project repo links. Wraps to multiple rows as the
+// project list grows — adding a new project is one entry in the
+// PROJECT_REPOS array, no layout change.
+.projectRepos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-12;
+  flex-wrap: wrap;
+}
+
+.repoLink {
+  @include ceramic-card;
+  @include ceramic-card-hover;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-8;
+  padding: $spacing-8 $spacing-16;
+  border-radius: $border-radius-md;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.zapButton {
+  @include ceramic-surface($color-secondary, 30%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-8;
+  padding: $spacing-12 $spacing-32;
+  min-width: 220px;
+  color: $static-white;
+  border-radius: $border-radius-md;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  @include mobile {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.githubButton {
+  @include ceramic-surface($static-navy, 25%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-8;
+  padding: $spacing-12 $spacing-32;
+  min-width: 220px;
+  color: $static-white;
+  border-radius: $border-radius-md;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  @include mobile {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.floatBlock1,
+.floatBlock2 {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.floatBlock1 {
+  top: 15%;
+  left: 5%;
+  animation: support-drift-a 5s ease-in-out infinite;
+}
+
+.floatBlock2 {
+  bottom: 15%;
+  right: 6%;
+  animation: support-drift-b 5.5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes support-drift-a {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -14px); }
+}
+
+@keyframes support-drift-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatBlock1,
+  .floatBlock2 {
+    animation: none;
+  }
+}
