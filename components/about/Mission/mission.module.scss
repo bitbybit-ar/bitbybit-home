@@ -1,0 +1,98 @@
+@use "@/styles/colors" as *;
+@use "@/styles/spacing" as *;
+@use "@/styles/typography" as *;
+@use "@/styles/common-mixins" as *;
+@use "@/styles/media-mixins" as *;
+
+.section {
+  @include section-padding;
+  position: relative;
+  overflow: visible;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  // Manifesto + values column, centered in the page. No side
+  // illustration — the BlockTower lives in the Hero now, so Mission
+  // can breathe on its own.
+  max-width: 720px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-extrabold;
+  margin-bottom: $spacing-12;
+}
+
+.manifesto {
+  color: $color-text-primary;
+  font-size: $font-size-lg-alt;
+  line-height: $line-height-base;
+  margin-bottom: $spacing-32;
+  // Translation contains an explicit `\n` between the philosophy and
+  // the brand-name callback ("Like stacking sats..."). pre-line honors
+  // it on roomy viewports while still wrapping each clause on narrow.
+  white-space: pre-line;
+
+  strong {
+    font-family: $font-display;
+    font-weight: $font-weight-extrabold;
+    background-image: linear-gradient(
+      135deg,
+      $color-primary,
+      $color-secondary,
+      $color-accent-alt
+    );
+    @include gradient-text;
+    background-clip: text;
+  }
+}
+
+// Values list — distilled value bullets, sourced from the internal
+// docs/about/mission.md vocabulary so the public surface and the
+// internal doc speak the same language.
+.values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-16 $spacing-32;
+  text-align: start;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value {
+  position: relative;
+  padding-inline-start: $spacing-20;
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  // Yellow square bullet — brand-colored cue at the start of each
+  // value row. Rendered via ::before so the markup stays a plain
+  // <li> for screen readers.
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.6em;
+    inline-size: 8px;
+    block-size: 8px;
+    background: $color-secondary;
+    border-radius: 2px;
+  }
+
+  strong {
+    color: $color-text-primary;
+    font-weight: $font-weight-semibold;
+  }
+}
+

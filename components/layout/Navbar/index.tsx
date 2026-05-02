@@ -9,7 +9,7 @@ import { useTheme } from "@/lib/contexts/theme-context";
 import { cn } from "@/lib/utils";
 import styles from "./navbar.module.scss";
 
-const SECTIONS = ["story", "projects", "friends", "support"] as const;
+const SECTIONS = ["mission", "projects", "friends", "support"] as const;
 const SCROLLED_THRESHOLD = 16;
 
 export function Navbar() {

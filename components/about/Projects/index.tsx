@@ -5,19 +5,43 @@ import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
 import { Block } from "@/components/common/Block";
 import { PixelDissolve } from "@/components/common/PixelDissolve";
+import { Button } from "@/components/ui/button";
 import { FlagIcon, TrophyIcon, BoltIcon } from "@/components/icons";
 import styles from "./projects.module.scss";
 
-const rows = [
-  "hackathon",
-  "theme",
-  "auth",
-  "users",
-  "rewards",
-  "data",
-  "status",
-  "link",
-] as const;
+const HIGHLIGHT_KEYS = ["highlight1", "highlight2", "highlight3"] as const;
+
+interface ProjectCard {
+  prefix: "habits" | "arena";
+  url: string;
+  accentClass: string;
+  buttonVariant: "accent" | "nostr";
+}
+
+const PROJECTS: ProjectCard[] = [
+  {
+    prefix: "habits",
+    url: "https://habits.bitbybit.com.ar",
+    accentClass: "accentGold",
+    buttonVariant: "accent",
+  },
+  {
+    prefix: "arena",
+    url: "https://arena.bitbybit.com.ar",
+    accentClass: "accentPurple",
+    buttonVariant: "nostr",
+  },
+];
+
+function renderBold(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
 
 export function Projects() {
   const t = useTranslations("about.projects");
@@ -37,34 +61,43 @@ export function Projects() {
 
       <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
         <h2 className={styles.title}>{t("title")}</h2>
+        <p className={styles.subtitle}>{t("subtitle")}</p>
 
-        <div className={styles.table}>
-          <div className={cn(styles.row, styles.header)}>
-            <div className={styles.label} />
-            <div className={cn(styles.cell, styles.gold)}>{t("habitsName")}</div>
-            <div className={cn(styles.cell, styles.purple)}>{t("arenaName")}</div>
-          </div>
-          {rows.map((row) => (
-            <div key={row} className={styles.row}>
-              <div className={styles.label}>{t(row)}</div>
-              <div className={styles.cell}>
-                {row === "link" ? (
-                  <a
-                    href="https://bitbybit.com.ar"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.link}
-                  >
-                    {t(`habitsLink`)}
-                  </a>
-                ) : (
-                  t(`habits${row.charAt(0).toUpperCase() + row.slice(1)}` as `habits${string}`)
-                )}
+        <div className={styles.cards}>
+          {PROJECTS.map(({ prefix, url, accentClass, buttonVariant }) => (
+            <a
+              key={prefix}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(styles.card, styles[accentClass])}
+              aria-label={`${t(`${prefix}Name`)} — ${t(`${prefix}Cta`)}`}
+            >
+              <div className={styles.cardHead}>
+                <h3 className={styles.cardName}>{t(`${prefix}Name`)}</h3>
+                <p className={styles.cardTagline}>{t(`${prefix}Tagline`)}</p>
               </div>
-              <div className={styles.cell}>
-                {t(`arena${row.charAt(0).toUpperCase() + row.slice(1)}` as `arena${string}`)}
+
+              <p className={styles.cardStory}>{t(`${prefix}Story`)}</p>
+
+              <ul className={styles.highlights}>
+                {HIGHLIGHT_KEYS.map((slot) => (
+                  <li key={slot} className={styles.highlight}>
+                    {renderBold(t(`${prefix}${slot.charAt(0).toUpperCase()}${slot.slice(1)}`))}
+                  </li>
+                ))}
+              </ul>
+
+              <div className={styles.ctaWrapper}>
+                {/* Visual button only — the parent <a> is the actual link.
+                    `tabIndex={-1}` keeps tab focus on the card itself, and
+                    `pointer-events: none` (in SCSS) lets clicks pass to
+                    the parent. */}
+                <Button variant={buttonVariant} tabIndex={-1}>
+                  {t(`${prefix}Cta`)}
+                </Button>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

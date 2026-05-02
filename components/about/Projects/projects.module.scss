@@ -14,83 +14,170 @@
 .container {
   @include container;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .title {
   font-family: $font-display;
-  font-size: $font-size-2xl;
+  font-size: $font-size-xl;
   font-weight: $font-weight-extrabold;
-  margin-bottom: $spacing-32;
+  margin-bottom: $spacing-12;
 }
 
-.table {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: left;
-
-  @include mobile {
-    overflow-x: auto;
-  }
+.subtitle {
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin: 0 auto $spacing-48;
+  max-width: 640px;
+  // Translation contains an explicit `\n` between the description and
+  // the call-to-try sentence; pre-line honors that break on roomy
+  // viewports while still allowing each clause to wrap on narrow ones.
+  white-space: pre-line;
 }
 
-.row {
+// Two equal-width project cards side-by-side on desktop, stacked on
+// mobile. A third card (future project) wraps to a second row at
+// 4-col grid the moment one is added.
+.cards {
   display: grid;
-  grid-template-columns: 140px 1fr 1fr;
-  gap: $spacing-4;
-  border-bottom: 1px solid $color-border;
-
-  &:last-child {
-    border-bottom: none;
-  }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-32;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 960px;
 
   @include mobile {
-    grid-template-columns: 100px 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: $spacing-24;
   }
 }
 
-.header {
-  border-bottom: 2px solid $color-border;
+// Whole card is the link — `<a>` element wraps the full content so a
+// click anywhere on the card opens the project. Keyboard users tab to
+// the card directly; the inner CTA span is just visual rhythm, not a
+// separate focus target.
+.card {
+  @include ceramic-card;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+  padding: $spacing-32;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    text-decoration: none;
+    box-shadow:
+      0 12px 32px $card-shadow-hover,
+      inset 0 1px 0 $ceramic-highlight,
+      inset 0 -2px 4px $ceramic-inner-shadow;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $focus-ring;
+    outline-offset: 4px;
+  }
+
+  // Card-wide hover bumps the inner CTA arrow forward, so the
+  // affordance reads even though the whole tile is the click target.
+  &:hover .cardCta {
+    transform: translateX(4px);
+  }
 }
 
-.label {
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-sm;
-  color: $color-text-secondary;
-  padding: $spacing-12 $spacing-8;
+.cardHead {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
 }
 
-.cell {
-  font-size: $font-size-sm;
+.cardName {
+  font-family: $font-display;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-extrabold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.cardTagline {
   color: $color-text-secondary;
-  padding: $spacing-12 $spacing-8;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  margin: 0;
+}
+
+.cardStory {
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin: 0;
+}
+
+// Highlights list — three "what makes this special" rows. Bold label
+// in primary text, gray description after a middle dot.
+.highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+  border-block-start: 1px solid $color-border;
+  padding-block-start: $spacing-16;
+}
+
+.highlight {
+  position: relative;
+  padding-inline-start: $spacing-20;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
   line-height: $line-height-base;
 
-  &.gold {
-    font-family: $font-display;
-    font-weight: $font-weight-bold;
-    color: $color-secondary;
-    font-size: $font-size-base;
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.55em;
+    inline-size: 6px;
+    block-size: 6px;
+    background: $color-secondary;
+    border-radius: 2px;
   }
 
-  &.purple {
+  strong {
+    color: $color-text-primary;
+    font-weight: $font-weight-semibold;
     font-family: $font-display;
-    font-weight: $font-weight-bold;
-    color: $color-primary;
-    font-size: $font-size-base;
   }
 }
 
-.link {
-  color: $color-secondary;
-  font-weight: $font-weight-semibold;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+.accentPurple .highlight::before {
+  background: $color-nostr;
 }
 
-// Floating blocks
+// Inner CTA — visual only (the parent `<a>` is the actual link). No
+// hover/focus rules of its own; the parent card's hover state forwards
+// the translateX through `.card:hover .cardCta` above.
+// CTA wrapper — pushes the button to the card's bottom and centers it
+// horizontally. The Button itself ignores pointer events so clicks
+// pass through to the card-wide `<a>`; tabIndex=-1 (set in JSX) keeps
+// the tab focus on the card.
+.ctaWrapper {
+  margin-block-start: auto;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+// Floating decorative blocks — same scatter pattern as before.
 .floatBlock1,
 .floatBlock2,
 .floatBlock3 {
@@ -140,5 +227,9 @@
   .floatBlock2,
   .floatBlock3 {
     animation: none;
+  }
+
+  .card {
+    transition: none;
   }
 }

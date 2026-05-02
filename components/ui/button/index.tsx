@@ -8,6 +8,7 @@ type ButtonBaseProps = {
     | "primary"
     | "secondary"
     | "accent"
+    | "nostr"
     | "success"
     | "danger"
     | "outline"

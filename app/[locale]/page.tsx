@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Story } from "@/components/about/Story";
+import { Hero } from "@/components/landing/Hero";
+import { Mission } from "@/components/about/Mission";
 import { Projects } from "@/components/about/Projects";
 import { Friends } from "@/components/landing/Friends";
 import { Support } from "@/components/landing/Support";
@@ -51,8 +52,9 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
       />
-      <div id="story">
-        <Story />
+      <Hero />
+      <div id="mission">
+        <Mission />
       </div>
       <div id="projects">
         <Projects />

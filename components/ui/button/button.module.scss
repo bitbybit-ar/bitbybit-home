@@ -77,6 +77,28 @@
   }
 }
 
+// Nostr-themed CTA — purple ceramic surface tied to `$color-nostr`.
+// Used by Arena cards so the brand color matches the protocol the app
+// is built on (Nostr).
+.variant-nostr {
+  @include ceramic-surface($color-nostr, 28%);
+  color: $static-white;
+
+  &:hover:not(:disabled) {
+    box-shadow:
+      0 8px 24px alpha($color-nostr, 35%),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active:not(:disabled) {
+    box-shadow:
+      0 2px 6px alpha($color-nostr, 20%),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 2px 4px rgba(0, 0, 0, 0.22);
+  }
+}
+
 // Brand-accent CTA — yellow ceramic surface. The `secondary` variant
 // happens to share the same color today, but consumers should use
 // `accent` to declare intent ("this is the call-to-action") so the
