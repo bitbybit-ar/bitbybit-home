@@ -57,6 +57,17 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
   (now at the repo root) under "Reporting a vulnerability" and "Code of
   conduct" sections.
 
+### Fixed
+
+- Mobile footer no longer stacks the brand on top of the link list.
+  Brand sits on the left, the Habits / Arena / GitHub links form a
+  column on the right.
+- Mobile `Friends` carousel now lands on the first polaroid (La Crypta)
+  on initial render and lets users swipe back to it. The leading
+  `padding-inline` made the first item's center-snap target unreachable,
+  so `mandatory` snap was skipping it to the second card. First/last
+  items now snap to start/end while middle items keep center-snap.
+
 ### Removed
 
 - `Team` and `LaCrypta` sections from the home page (replaced by the

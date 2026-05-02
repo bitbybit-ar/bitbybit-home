@@ -58,8 +58,17 @@
 
   @include mobile {
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 12vw;
+    // Override the desktop `justify-content: center`. On an
+    // overflowing horizontal flex container, center-justified content
+    // sits in negative scroll space the browser can't reach — that's
+    // why La Crypta was unreachable to the left of Nostr WoT.
+    justify-content: flex-start;
+    // `proximity` (not `mandatory`) so the browser never force-snaps
+    // away from a position the user can actually reach.
+    scroll-snap-type: x proximity;
+    // Match the leading padding so each snapped item lands flush with
+    // the visible edge of the carousel rather than under the bleed.
+    scroll-padding-inline: 12vw;
     gap: $spacing-24;
     padding: $spacing-32 0;
     // Bleed past the page container so the leading/trailing polaroids
@@ -80,7 +89,11 @@
   display: block;
 
   @include mobile {
-    scroll-snap-align: center;
+    // `start` (not `center`) so every snap target is reachable from
+    // scrollLeft=0 onward — item 1's left edge lines up with the
+    // 12vw scroll-padding when scrollLeft=0, and the trailing items
+    // snap one peek-width to the left of viewport.
+    scroll-snap-align: start;
   }
 }
 
