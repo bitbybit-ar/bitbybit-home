@@ -1,0 +1,156 @@
+@use "@/styles/colors" as *;
+@use "@/styles/spacing" as *;
+@use "@/styles/typography" as *;
+@use "@/styles/common-mixins" as *;
+@use "@/styles/media-mixins" as *;
+
+.section {
+  position: relative;
+  overflow: hidden;
+  // Full-viewport on first paint, minus the fixed navbar so the
+  // headline sits cleanly below the toolbar without overlap.
+  // `100dvh` honors mobile browser chrome dynamics; `min-height` lets
+  // taller copy push the section bigger if needed.
+  min-block-size: calc(100dvh - $navbar-height);
+  padding-block-start: calc($navbar-height + #{$spacing-48});
+  padding-block-end: $spacing-48;
+  display: flex;
+  align-items: center;
+
+  @include mobile {
+    min-block-size: calc(100dvh - $navbar-height);
+    padding-block-start: calc($navbar-height + #{$spacing-32});
+    padding-block-end: $spacing-32;
+  }
+}
+
+.container {
+  @include container;
+  display: flex;
+  align-items: center;
+  gap: $spacing-48;
+  width: 100%;
+  // Sits above the bubble + tower decoration layers.
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-32;
+    text-align: center;
+  }
+}
+
+.content {
+  flex: 1;
+  // Constrain copy width so headlines wrap to a few lines instead of
+  // running across the full container on wide viewports.
+  max-width: 640px;
+}
+
+.headline {
+  font-family: $font-display;
+  font-size: $font-size-hero;
+  font-weight: $font-weight-extrabold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+  margin-bottom: $spacing-24;
+
+  @include mobile {
+    font-size: $font-size-2xl;
+  }
+}
+
+// Gradient sweep on the third noun (Software libre / Open software).
+// Echoes the footer motto's gradient and pulls the brand decoration
+// palette into the hero typography without recoloring the rest of
+// the page.
+.headlineAccent {
+  background-image: linear-gradient(
+    135deg,
+    $color-primary,
+    $color-secondary,
+    $color-accent-alt
+  );
+  @include gradient-text;
+  background-clip: text;
+}
+
+.subline {
+  font-family: $font-body;
+  font-size: $font-size-subtitle;
+  line-height: $line-height-base;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-32;
+
+  @include mobile {
+    font-size: $font-size-md;
+  }
+}
+
+// Yellow ceramic CTA, mirrors the Button `accent` variant so a future
+// extraction is a one-line swap.
+.cta {
+  @include ceramic-surface($color-secondary, 30%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-8;
+  padding: $spacing-16 $spacing-32;
+  border-radius: $border-radius-md;
+  color: $gray-900;
+  font-family: $font-body;
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow:
+      0 8px 24px alpha($color-secondary, 35%),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(1px) scale(0.98);
+  }
+}
+
+.tower {
+  flex-shrink: 0;
+  width: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  // Anchor the tower to the right edge of the container — content's
+  // 640 px max-width can leave dead space between copy and tower on
+  // wide viewports; pushing the tower right keeps it visually paired
+  // with the right-hand gutter.
+  margin-inline-start: auto;
+
+  @include mobile {
+    // On mobile the tower drops behind the copy at low opacity so the
+    // headline isn't pushed below the fold by an oversized illustration.
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: $spacing-100;
+    z-index: 0;
+    opacity: 0.35;
+    pointer-events: none;
+    width: 100%;
+  }
+}
+
+// Block-particle separator at the bottom edge — same pattern as
+// Friends and Projects, keeps section transitions consistent.
+.dissolveWrapper {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  pointer-events: none;
+}

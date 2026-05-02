@@ -5,28 +5,21 @@
 
 .footer {
   border-top: 1px solid $color-border;
-  padding: $spacing-40 0 $spacing-24;
+  padding: $spacing-32 0;
 }
 
 .inner {
   max-width: $container-max-width;
   margin: 0 auto;
   padding: 0 $container-padding;
-
-  @include mobile {
-    padding: 0 $container-padding-mobile;
-  }
-}
-
-.top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: $spacing-24;
   flex-wrap: wrap;
   gap: $spacing-16;
 
   @include mobile {
+    padding: 0 $container-padding-mobile;
     flex-direction: column;
     align-items: center;
     gap: $spacing-20;
@@ -58,41 +51,10 @@
   }
 }
 
+// All links — Habits / Arena / GitHub — share the same gray-secondary
+// baseline and gray-primary hover. Icon + text combos (GitHub) use the
+// same gap and align cleanly because of the inline-flex baseline.
 .link {
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-4;
-  color: $color-text-secondary;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: $color-text-primary;
-    text-decoration: none;
-  }
-}
-
-.bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-16;
-  padding-top: $spacing-24;
-  border-top: 1px solid $color-border;
-
-  @include mobile {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: $spacing-12;
-  }
-}
-
-// GitHub link mirrors the `.link` style used in the top row — same gray
-// text-secondary baseline, same color-only hover. Sits at the
-// bottom-left corner alongside the copyright line on the right.
-.githubLink {
   display: inline-flex;
   align-items: center;
   gap: $spacing-8;
@@ -101,12 +63,12 @@
   font-weight: $font-weight-medium;
   text-decoration: none;
   transition: color 0.2s ease;
-  // Collapse text line-height to match the icon's intrinsic height so
-  // the cap-line and the icon's vertical center align cleanly.
+  // Collapse text line-height to match icon height so icon centers
+  // align with the text cap-line cleanly.
   line-height: 1;
 
-  // Force the SVG into flow as a block so it doesn't pick up a stray
-  // descender from the surrounding inline baseline.
+  // Drops the inline-baseline descender Chrome paints below SVGs in
+  // inline contexts.
   svg {
     display: block;
   }
@@ -115,10 +77,4 @@
     color: $color-text-primary;
     text-decoration: none;
   }
-}
-
-.copy {
-  color: $color-text-secondary;
-  font-size: $font-size-xs;
-  margin: 0;
 }
