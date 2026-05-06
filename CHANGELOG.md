@@ -12,6 +12,12 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Two new friends in the `Friends` section: **Obelisk**
+  (`https://obelisk.ar/`) — Discord alternative with Nostr login — and
+  **LaWallet** (`https://lawallet.ar/`) — Bitcoin and Lightning wallet
+  on Nostr. Obelisk's logo is vendored at
+  `public/images/friends/obelisk.png`; LaWallet uses the GitHub-avatar
+  pattern (`https://github.com/lawalletio.png?size=256`) like La Crypta.
 - `Partners` carousel section (`components/landing/Partners`) — auto-
   scrolling marquee of partner logos with hover/focus pause and
   reduced-motion fallback. Initial partners: La Crypta, Nostr WoT.

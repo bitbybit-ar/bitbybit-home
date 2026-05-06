@@ -1,7 +1,7 @@
 # Architecture overview
 
 > **Status:** Active
-> **Last updated:** 2026-05-01
+> **Last updated:** 2026-05-05
 
 ---
 
@@ -9,6 +9,7 @@
 
 | Date | Section | Change | Reason |
 |---|---|---|---|
+| 2026-05-05 | Page structure | Added Obelisk and LaWallet to the `Friends` board, bringing the count from three to five. Obelisk's logo is vendored locally (`public/images/friends/obelisk.png`); LaWallet uses the GitHub-avatar URL pattern (`github.com/lawalletio.png`). The board now wraps to two rows (3 + 2) on tablet/desktop via a `flex-wrap` + `max-width: calc(3 * 240px + 2 * 40px)` cap on `.board`, with a tablet-only shrink to 220px polaroids + 24px gap so the 3-up row still fits at 768px viewports; the mobile scroll-snap carousel is unchanged. | Two more projects in the BitByBit values orbit (Nostr-native chat and a Lightning wallet) deserved a spot on the board. With five polaroids the single-row corkboard overflowed even our 1200px container (5 × 240 + 4 × 40 = 1360px) and made tablet items unreachable inside negative scroll space, so the row had to break into two — splitting 3 + 2 keeps the rotation cycle (`:nth-child(3n + …)`) intact across rows. |
 | 2026-05-01 | Page structure | Renamed `Partners` to `Friends`. New polaroid-on-corkboard layout: pre-rotated cards on desktop, CSS-only scroll-snap carousel on mobile (no JS). Added Mapping Bitcoin as the third friend. Anchor `#partners` → `#friends`, i18n namespace `landing.partners` → `landing.friends`. | "Partners" sounded like a business arrangement; the relationship is closer to fellow travelers with shared values. The marquee carousel was disproportionate for a 3-item list, and the polaroid pattern reinforces the "friends, not partners" framing. |
 | 2026-05-01 | Page structure | Merged the standalone `OpenSource` section into `Support`. The unified section keeps the org-level CTAs (Zap, Star) and adds a per-project repo row driven by an array — adding a project is one entry, no layout change. | Two adjacent sections were saying the same thing in two voices. One section reads cleaner and scales naturally as new projects ship. |
 | 2026-05-01 | Theming | Adopted gray-primary + yellow-secondary palette with arena's decorative tokens preserved. New `gray-*` and `secondary-*` scales, semantic role tokens, dedicated `--focus-ring`, and `Button variant="accent"`. See ADR [0002](decisions/0002-palette.md). | Arena's purple-primary register reads playful; the BitByBit group landing needs a serious tone while keeping the multi-hue logo + Block + Bubble identity shared across sister projects. |
