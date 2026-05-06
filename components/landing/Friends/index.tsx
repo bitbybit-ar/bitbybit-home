@@ -46,6 +46,18 @@ const FRIENDS: Friend[] = [
     descriptionKey: "mappingBitcoinDescription",
     frameBg: "#0D0D0D",
   },
+  {
+    name: "Obelisk",
+    url: "https://obelisk.ar/",
+    logo: "/images/friends/obelisk.png",
+    descriptionKey: "obeliskDescription",
+  },
+  {
+    name: "LaWallet",
+    url: "https://lawallet.ar/",
+    logo: "https://github.com/lawalletio.png?size=256",
+    descriptionKey: "laWalletDescription",
+  },
 ];
 
 export function Friends() {

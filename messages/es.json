@@ -67,7 +67,9 @@
       "listLabel": "Amigos de BitByBit",
       "laCryptaDescription": "Comunidad Bitcoin en Argentina",
       "nostrWotDescription": "Web of Trust para Nostr",
-      "mappingBitcoinDescription": "Encontrá cada lugar del ecosistema Bitcoin."
+      "mappingBitcoinDescription": "Encontrá cada lugar del ecosistema Bitcoin.",
+      "obeliskDescription": "Alternativa a Discord con login Nostr.",
+      "laWalletDescription": "Billetera Bitcoin y Lightning sobre Nostr."
     },
     "support": {
       "title": "Apoyá a BitByBit",

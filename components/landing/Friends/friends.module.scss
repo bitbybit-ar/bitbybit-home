@@ -42,23 +42,44 @@
   white-space: pre-line;
 }
 
-// The "board" hosts the polaroids. On desktop it's a centered flex
-// row (the friends look pinned to a corkboard with their pre-set
-// rotations). On mobile it becomes a CSS-only scroll-snap carousel —
-// each polaroid is a snap target, neighbors peek from the edges, and
-// native touch handles the swipe so we don't ship JS for it.
+// The "board" hosts the polaroids. On tablet/desktop it's a centered
+// flex grid that wraps to two rows (3 + 2) — five polaroids at 240px
+// + 40px gaps total 1360px, which overflows even our 1200px container
+// in a single row, so we cap row width to fit exactly 3 polaroids and
+// let items 4–5 wrap onto a centered second row. On mobile it becomes
+// a CSS-only scroll-snap carousel — each polaroid is a snap target,
+// neighbors peek from the edges, and native touch handles the swipe
+// so we don't ship JS for it (stacking 5 polaroids vertically on a
+// phone eats too much scroll real estate).
 .board {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
   gap: $spacing-40;
   list-style: none;
-  margin: 0;
+  // 3 polaroids at 240px + 2 gaps at 40px = 800px. Constraining the
+  // board to that width forces the 4th/5th items onto a second row,
+  // which `justify-content: center` then centers under the first.
+  max-width: calc(3 * 240px + 2 * #{$spacing-40});
+  margin: 0 auto;
   padding: $spacing-32 0;
 
+  @include tablet {
+    // 768–1023px viewports can't fit 3 × 240px + 2 × 40px = 800px at
+    // the low end (the container only gives ~720px at 768). Shrink
+    // the polaroid (see below) and gap so the 3-up row still fits at
+    // 768px without dropping items into a third row.
+    gap: $spacing-24;
+    max-width: calc(3 * 220px + 2 * #{$spacing-24});
+  }
+
   @include mobile {
+    // Drop the wrap + max-width and switch to horizontal carousel.
+    flex-wrap: nowrap;
+    max-width: none;
     overflow-x: auto;
-    // Override the desktop `justify-content: center`. On an
+    // Override the tablet/desktop `justify-content: center`. On an
     // overflowing horizontal flex container, center-justified content
     // sits in negative scroll space the browser can't reach — that's
     // why La Crypta was unreachable to the left of Nostr WoT.
@@ -70,7 +91,6 @@
     // the visible edge of the carousel rather than under the bleed.
     scroll-padding-inline: 12vw;
     gap: $spacing-24;
-    padding: $spacing-32 0;
     // Bleed past the page container so the leading/trailing polaroids
     // can peek from the edges before snap-centering.
     margin-inline: calc(-1 * #{$container-padding-mobile});
@@ -119,6 +139,13 @@
 
   &:hover {
     text-decoration: none;
+  }
+
+  @include tablet {
+    // Paired with the tablet `max-width` on `.board` — 3 × 220 + 2 ×
+    // 24 = 708px, which fits inside the 720px content area at the
+    // narrowest tablet (768px viewport, 24px container padding).
+    width: 220px;
   }
 
   @include mobile {
