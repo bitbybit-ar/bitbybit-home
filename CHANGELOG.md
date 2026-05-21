@@ -12,6 +12,12 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- NIP-05 verification at `bitbybit.com.ar/.well-known/nostr.json` for
+  four team identities (`anix`, `wnder`, `fabri`, `fred`), each with a
+  shared relay list. Served as a static file under `public/`; a new
+  `/.well-known/nostr.json` entry in `next.config.ts` adds the
+  `Access-Control-Allow-Origin: *` header browser-based Nostr clients
+  need to perform the cross-origin verification fetch.
 - Two new friends in the `Friends` section: **Obelisk**
   (`https://obelisk.ar/`) — Discord alternative with Nostr login — and
   **LaWallet** (`https://lawallet.ar/`) — Bitcoin and Lightning wallet

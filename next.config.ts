@@ -60,6 +60,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // NIP-05 verification: browser-based Nostr clients fetch this
+        // cross-origin to verify <name>@bitbybit.com.ar identities, so
+        // the response must opt in to CORS or the check fails silently.
+        source: "/.well-known/nostr.json",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
     ];
   },
 };

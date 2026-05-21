@@ -1,7 +1,7 @@
 # Architecture overview
 
 > **Status:** Active
-> **Last updated:** 2026-05-05
+> **Last updated:** 2026-05-20
 
 ---
 
@@ -9,6 +9,7 @@
 
 | Date | Section | Change | Reason |
 |---|---|---|---|
+| 2026-05-20 | Routing, Security | Added NIP-05 verification at `/.well-known/nostr.json` (static file under `public/`, four team identities: `anix`, `wnder`, `fabri`, `fred`). Added a second `headers()` entry in `next.config.ts` scoped to `/.well-known/nostr.json` that sets `Access-Control-Allow-Origin: *`; the existing `/(.*)` security headers (CSP, HSTS, frame-options, etc.) still apply. | Browser-based Nostr clients verify `<name>@bitbybit.com.ar` identities with a cross-origin fetch and fail silently without CORS. Static file under `public/` is the right shape — adding an API route or route handler would violate the static-only rule for this repo. |
 | 2026-05-05 | Page structure | Added Obelisk and LaWallet to the `Friends` board, bringing the count from three to five. Obelisk's logo is vendored locally (`public/images/friends/obelisk.png`); LaWallet uses the GitHub-avatar URL pattern (`github.com/lawalletio.png`). The board now wraps to two rows (3 + 2) on tablet/desktop via a `flex-wrap` + `max-width: calc(3 * 240px + 2 * 40px)` cap on `.board`, with a tablet-only shrink to 220px polaroids + 24px gap so the 3-up row still fits at 768px viewports; the mobile scroll-snap carousel is unchanged. | Two more projects in the BitByBit values orbit (Nostr-native chat and a Lightning wallet) deserved a spot on the board. With five polaroids the single-row corkboard overflowed even our 1200px container (5 × 240 + 4 × 40 = 1360px) and made tablet items unreachable inside negative scroll space, so the row had to break into two — splitting 3 + 2 keeps the rotation cycle (`:nth-child(3n + …)`) intact across rows. |
 | 2026-05-01 | Page structure | Renamed `Partners` to `Friends`. New polaroid-on-corkboard layout: pre-rotated cards on desktop, CSS-only scroll-snap carousel on mobile (no JS). Added Mapping Bitcoin as the third friend. Anchor `#partners` → `#friends`, i18n namespace `landing.partners` → `landing.friends`. | "Partners" sounded like a business arrangement; the relationship is closer to fellow travelers with shared values. The marquee carousel was disproportionate for a 3-item list, and the polaroid pattern reinforces the "friends, not partners" framing. |
 | 2026-05-01 | Page structure | Merged the standalone `OpenSource` section into `Support`. The unified section keeps the org-level CTAs (Zap, Star) and adds a per-project repo row driven by an array — adding a project is one entry, no layout change. | Two adjacent sections were saying the same thing in two voices. One section reads cleaner and scales naturally as new projects ship. |
@@ -64,9 +65,16 @@ Anything beyond that lives on the project subdomains, not here.
 /robots.txt   → allow-all + sitemap pointer
 /manifest.webmanifest
 /[locale]/opengraph-image.png  → dynamically rendered OG image
+/.well-known/nostr.json        → NIP-05 verification (static)
 ```
 
 There is no other route. Every page is the home page.
+
+The `/.well-known/nostr.json` file lets Nostr clients verify
+`<name>@bitbybit.com.ar` identities (NIP-05). It is a plain static file
+under `public/.well-known/` — no API route, no route handler — and is
+served with `Access-Control-Allow-Origin: *` (see Security) so browser-
+based clients can fetch it cross-origin.
 
 ## Page structure
 
@@ -111,6 +119,11 @@ from search results.
   `Referrer-Policy: strict-origin-when-cross-origin`,
   `Permissions-Policy` locks camera/mic/geo.
 - All external links use `target="_blank" rel="noopener noreferrer"`.
+- `/.well-known/nostr.json` is the one path that opts in to CORS
+  (`Access-Control-Allow-Origin: *`), via a second `headers()` entry in
+  `next.config.ts`. The file contains only public keys, so wide-open
+  read access is the intended behavior; the rest of the site keeps the
+  default same-origin posture.
 
 ## Theming
 
