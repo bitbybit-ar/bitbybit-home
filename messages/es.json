@@ -66,7 +66,7 @@
   },
   "landing": {
     "hero": {
-      "headline": "Hábitos. Comunidad. <accent>Software libre</accent>.",
+      "headline": "<word>Hábitos.</word> <word>Comunidad.</word> <word><accent>Software libre</accent>.</word>",
       "subline": "Construimos en público, poco a poco.",
       "ctaLabel": "Conocé los proyectos"
     },
@@ -74,6 +74,7 @@
       "title": "Compañeros de viaje",
       "subtitle": "Proyectos y comunidades que admiramos,\nconstructores de infraestructura abierta para un futuro más libre.",
       "listLabel": "Amigos de BitByBit",
+      "wapuDescription": "Liquidación Lightning a CBU/CVU/alias en Argentina.",
       "laCryptaDescription": "Comunidad Bitcoin en Argentina",
       "nostrWotDescription": "Web of Trust para Nostr",
       "mappingBitcoinDescription": "Encontrá cada lugar del ecosistema Bitcoin.",

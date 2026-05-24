@@ -38,6 +38,10 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
   on Nostr. Obelisk's logo is vendored at
   `public/images/friends/obelisk.png`; LaWallet uses the GitHub-avatar
   pattern (`https://github.com/lawalletio.png?size=256`) like La Crypta.
+- **Wapu** (`https://wapu.com.ar`) added to the `Friends` section —
+  Lightning settlement to CBU/CVU/alias in Argentina. Mirrors the CURSATS
+  landing, which lists Wapu first among its travel companions; logo via
+  the GitHub-avatar pattern.
 - `Partners` carousel section (`components/landing/Partners`) — auto-
   scrolling marquee of partner logos with hover/focus pause and
   reduced-motion fallback. Initial partners: La Crypta, Nostr WoT.
@@ -61,6 +65,21 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- BlockTower assembly reworked to framer-motion. All blocks now mount at
+  once so the tower reserves its full height on the first frame and no
+  longer drifts as it builds (the old `setInterval` insert grew the stack
+  mid-build, and `align-items: center` re-centered it each step — the
+  wobble that looked broken). Blocks fall and settle on a spring (natural
+  landing weight) via a stagger, replacing the CSS `block-drop`/`block-pulse`
+  keyframes; the resting glow breathes via framer and is gated to in-view +
+  motion-allowed, so nothing composites once the hero scrolls past. `Block`
+  lost its now-unused `animation`/`delay` props.
+- Hero headline now animates noun by noun. Each unit (Habits / Community /
+  Open software) is its own `<word>` rich-text tag rendered as a staggered
+  `motion.span`, so the words rise on their own beat instead of the whole
+  line fading as one block. The accent noun also gets CURSATS' flowing
+  gradient (animated `background-position` over an oversized gradient),
+  reduced-motion guarded.
 - Home-page section order is now Story → Projects → Friends → Support
   (the `Partners` section was renamed to `Friends` and the standalone
   `Open Source` section was merged into `Support`).

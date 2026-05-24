@@ -63,6 +63,13 @@
   }
 }
 
+// Each headline noun animates on its own beat (see Hero). Inline elements
+// ignore `transform`, so the words must be inline-block for framer's rise
+// to apply; they still flow and wrap between units like normal text.
+.word {
+  display: inline-block;
+}
+
 // Gradient sweep on the third noun (Software libre / Open software).
 // Echoes the footer motto's gradient and pulls the brand decoration
 // palette into the hero typography without recoloring the rest of
@@ -70,12 +77,34 @@
 .headlineAccent {
   background-image: linear-gradient(
     135deg,
-    $color-primary,
-    $color-secondary,
-    $color-accent-alt
+    $color-primary 0%,
+    $color-secondary 45%,
+    $color-accent-alt 100%
   );
+  // Oversized background + a slow position shift makes the gradient
+  // flow across the word (CURSATS' hero treatment). The paint is
+  // confined to this one phrase's box, so the repaint cost is tiny.
+  background-size: 200% 200%;
+  animation: headline-gradient-shift 6s ease infinite;
   @include gradient-text;
   background-clip: text;
+}
+
+@keyframes headline-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headlineAccent {
+    animation: none;
+    background-position: 0% 50%;
+  }
 }
 
 .subline {
