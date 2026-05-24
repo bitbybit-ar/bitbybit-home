@@ -33,6 +33,12 @@ interface Friend {
 // pattern and the layout still reads as "pinned to a board".
 const FRIENDS: Friend[] = [
   {
+    name: "Wapu",
+    url: "https://wapu.com.ar",
+    logo: "https://avatars.githubusercontent.com/u/161655811?s=128&v=4",
+    descriptionKey: "wapuDescription",
+  },
+  {
     name: "La Crypta",
     url: "https://lacrypta.ar",
     logo: "https://github.com/lacrypta.png?size=256",

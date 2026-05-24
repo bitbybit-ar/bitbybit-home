@@ -1,15 +1,75 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type Variants,
+} from "framer-motion";
 import { useTranslations } from "next-intl";
-import { fadeUp, interactiveLift, staggerContainer } from "@/lib/motion/variants";
+import { interactiveLift } from "@/lib/motion/variants";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { Bubble } from "@/components/common/Bubble";
 import { BlockTower } from "@/components/common/BlockTower";
 import { PixelDissolve } from "@/components/common/PixelDissolve";
 import { BoltIcon, HeartIcon } from "@/components/icons";
 import styles from "./hero.module.scss";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Hero entrance timeline. The headline reveals its three nouns one at a
+// time, with wide spacing so each word's rise lands distinctly before the
+// next begins. The subline and CTA hold until the headline has finished,
+// then follow in sequence — so the eye reads headline → subline → CTA
+// rather than everything cascading at once.
+const WORD_STAGGER = 0.42;
+const HEADLINE_DELAY = 0.3;
+// Three nouns: the last starts at HEADLINE_DELAY + 2 * WORD_STAGGER and
+// needs ~0.5s to settle.
+const HEADLINE_DONE = HEADLINE_DELAY + 2 * WORD_STAGGER + 0.5;
+
+// Empty container whose only job is to flip its children from hidden to
+// show on mount; each child (headline, subline, CTA) owns its own timing.
+const contentVariants: Variants = {
+  hidden: {},
+  show: {},
+};
+
+const headlineVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: WORD_STAGGER, delayChildren: HEADLINE_DELAY },
+  },
+};
+
+const wordVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 18, mass: 1 },
+  },
+};
+
+const sublineVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: HEADLINE_DONE, duration: 0.5, ease: EASE },
+  },
+};
+
+const ctaVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: HEADLINE_DONE + 0.25, duration: 0.5, ease: EASE },
+  },
+};
 
 export function Hero() {
   const t = useTranslations("landing.hero");
@@ -82,22 +142,30 @@ export function Hero() {
           className={styles.content}
           initial="hidden"
           animate="show"
-          variants={staggerContainer}
+          variants={contentVariants}
         >
-          <motion.h1 className={styles.headline} variants={fadeUp}>
+          {/* Each noun is its own `<word>` tag so it rises on its own beat:
+              the h1 is a nested stagger container (no fade of its own), and
+              every word inherits `wordVariants`, landing one after another. */}
+          <motion.h1 className={styles.headline} variants={headlineVariants}>
             {t.rich("headline", {
+              word: (chunks) => (
+                <motion.span className={styles.word} variants={wordVariants}>
+                  {chunks}
+                </motion.span>
+              ),
               accent: (chunks) => (
                 <span className={styles.headlineAccent}>{chunks}</span>
               ),
             })}
           </motion.h1>
-          <motion.p className={styles.subline} variants={fadeUp}>
+          <motion.p className={styles.subline} variants={sublineVariants}>
             {t("subline")}
           </motion.p>
           <motion.a
             href="#projects"
             className={styles.cta}
-            variants={fadeUp}
+            variants={ctaVariants}
             {...interactiveLift}
           >
             {t("ctaLabel")}

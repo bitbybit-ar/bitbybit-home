@@ -66,7 +66,7 @@
   },
   "landing": {
     "hero": {
-      "headline": "Habits. Community. <accent>Open software</accent>.",
+      "headline": "<word>Habits.</word> <word>Community.</word> <word><accent>Open software</accent>.</word>",
       "subline": "We build in public, bit by bit.",
       "ctaLabel": "Explore our projects"
     },
@@ -74,6 +74,7 @@
       "title": "Travel companions",
       "subtitle": "Projects and communities we admire,\nbuilders of open infrastructure for a freer future.",
       "listLabel": "Friends of BitByBit",
+      "wapuDescription": "Lightning settlement to CBU/CVU/alias in Argentina.",
       "laCryptaDescription": "Bitcoin community in Argentina",
       "nostrWotDescription": "Web of Trust for Nostr",
       "mappingBitcoinDescription": "Find every place in the Bitcoin ecosystem.",

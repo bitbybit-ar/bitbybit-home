@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+// Opacity breathing is driven by framer-motion (gated to in-view +
+// motion-allowed) so it stops compositing once the tower scrolls past
+// the fold. The base opacity here is the resting value framer animates
+// from / settles to.
 .glow {
   position: absolute;
   bottom: -20px;
@@ -22,23 +26,5 @@
   border-radius: 50%;
   filter: blur(12px);
   opacity: 0.35;
-  animation: glow-pulse 2s ease-in-out infinite;
   pointer-events: none;
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .glow {
-    animation: none;
-    opacity: 0.35;
-  }
 }
