@@ -1,8 +1,13 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import {
+  fadeUp,
+  fadeUpStagger,
+  staggerContainer,
+  viewportOnce,
+} from "@/lib/motion/variants";
 import { Bubble } from "@/components/common/Bubble";
 import { BoltIcon, HeartIcon } from "@/components/icons";
 import styles from "./mission.module.scss";
@@ -21,7 +26,6 @@ function renderBold(text: string) {
 
 export function Mission() {
   const t = useTranslations("about.mission");
-  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className={styles.section}>
@@ -46,18 +50,28 @@ export function Mission() {
         delay={1.2}
       />
 
-      <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.manifesto}>{renderBold(t("manifesto"))}</p>
+      <motion.div
+        className={styles.container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <motion.h2 className={styles.title} variants={fadeUp}>
+          {t("title")}
+        </motion.h2>
+        <motion.p className={styles.manifesto} variants={fadeUp}>
+          {renderBold(t("manifesto"))}
+        </motion.p>
 
-        <ul className={styles.values}>
+        <motion.ul className={styles.values} variants={fadeUpStagger}>
           {VALUE_KEYS.map((key) => (
-            <li key={key} className={styles.value}>
+            <motion.li key={key} className={styles.value} variants={fadeUp}>
               {renderBold(t(key))}
-            </li>
+            </motion.li>
           ))}
-        </ul>
-      </div>
+        </motion.ul>
+      </motion.div>
     </section>
   );
 }

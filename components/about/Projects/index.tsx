@@ -1,7 +1,14 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
+import {
+  fadeUp,
+  fadeUpStagger,
+  interactiveLift,
+  staggerContainer,
+  viewportOnce,
+} from "@/lib/motion/variants";
 import { cn } from "@/lib/utils";
 import { Block } from "@/components/common/Block";
 import { PixelDissolve } from "@/components/common/PixelDissolve";
@@ -51,7 +58,6 @@ function renderBold(text: string) {
 
 export function Projects() {
   const t = useTranslations("about.projects");
-  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className={styles.section}>
@@ -65,19 +71,31 @@ export function Projects() {
         <BoltIcon size={22} color="white" />
       </Block>
 
-      <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.subtitle}>{t("subtitle")}</p>
+      <motion.div
+        className={styles.container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <motion.h2 className={styles.title} variants={fadeUp}>
+          {t("title")}
+        </motion.h2>
+        <motion.p className={styles.subtitle} variants={fadeUp}>
+          {t("subtitle")}
+        </motion.p>
 
-        <div className={styles.cards}>
+        <motion.div className={styles.cards} variants={fadeUpStagger}>
           {PROJECTS.map(({ prefix, url, accentClass, buttonVariant }) => (
-            <a
+            <motion.a
               key={prefix}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(styles.card, styles[accentClass])}
               aria-label={`${t(`${prefix}Name`)} — ${t(`${prefix}Cta`)}`}
+              variants={fadeUp}
+              {...interactiveLift}
             >
               <div className={styles.cardHead}>
                 <h3 className={styles.cardName}>{t(`${prefix}Name`)}</h3>
@@ -103,10 +121,10 @@ export function Projects() {
                   {t(`${prefix}Cta`)}
                 </Button>
               </div>
-            </a>
+            </motion.a>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className={styles.dissolveWrapper}>
         <PixelDissolve />

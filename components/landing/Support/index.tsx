@@ -1,8 +1,14 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import {
+  fadeUp,
+  fadeUpStagger,
+  interactiveLift,
+  staggerContainer,
+  viewportOnce,
+} from "@/lib/motion/variants";
 import { Block } from "@/components/common/Block";
 import { BoltIcon, GithubIcon } from "@/components/icons";
 import styles from "./support.module.scss";
@@ -20,7 +26,6 @@ const PROJECT_REPOS = [
 
 export function Support() {
   const t = useTranslations("landing.support");
-  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className={styles.section}>
@@ -31,32 +36,51 @@ export function Support() {
         <GithubIcon size={22} color="white" />
       </Block>
 
-      <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.subtitle}>{t("subtitle")}</p>
+      <motion.div
+        className={styles.container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <motion.h2 className={styles.title} variants={fadeUp}>
+          {t("title")}
+        </motion.h2>
+        <motion.p className={styles.subtitle} variants={fadeUp}>
+          {t("subtitle")}
+        </motion.p>
 
-        <div className={styles.primaryActions}>
-          <a
+        <motion.div className={styles.primaryActions} variants={fadeUpStagger}>
+          <motion.a
             href={`lightning:${LIGHTNING_ADDRESS}`}
             className={styles.zapButton}
             aria-label={t("zapAriaLabel")}
+            variants={fadeUp}
+            {...interactiveLift}
           >
             <BoltIcon size={18} color="white" />
             {t("zapDevs")}
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://github.com/bitbybit-ar"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.githubButton}
+            variants={fadeUp}
+            {...interactiveLift}
           >
             <GithubIcon size={18} />
             {t("starOnGithub")}
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <p className={styles.contributeLabel}>{t("orContribute")}</p>
-        <div className={styles.projectRepos}>
+        <motion.p className={styles.contributeLabel} variants={fadeUp}>
+          {t("orContribute")}
+        </motion.p>
+        {/* The row fades up as a unit; the chips keep their CSS
+            ceramic-card hover (which owns their transform) so we don't
+            give them a framer transform that would override it. */}
+        <motion.div className={styles.projectRepos} variants={fadeUp}>
           {PROJECT_REPOS.map(({ key, url }) => (
             <a
               key={key}
@@ -69,8 +93,8 @@ export function Support() {
               {t(key)}
             </a>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

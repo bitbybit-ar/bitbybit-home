@@ -60,7 +60,9 @@
 @mixin section-padding {
   padding: $spacing-100 0;
 
-  @media (max-width: 768px) {
+  // Use the shared `mobile` mixin (max-width 767px) so the breakpoint
+  // matches every other section instead of a one-off 768px rule.
+  @include mobile {
     padding: 60px 0;
   }
 }

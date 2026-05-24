@@ -71,6 +71,9 @@
   align-items: center;
   gap: $spacing-8;
   padding: $spacing-8 $spacing-16;
+  // Guarantee a 44px-tall tap target (Apple/AAA) for these secondary
+  // chips; the row wraps freely so the extra height costs no layout.
+  min-height: 44px;
   border-radius: $border-radius-md;
   color: $color-text-primary;
   font-size: $font-size-sm;
@@ -96,11 +99,18 @@
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  // Lift/press transform is owned by framer-motion (`interactiveLift`);
+  // only the shadow transitions here to avoid fighting over `transform`.
+  transition: box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
     text-decoration: none;
+  }
+
+  // Ease the 220px min-width at tablet so the two CTAs sit comfortably
+  // side-by-side instead of crowding the row.
+  @include tablet {
+    min-width: 180px;
   }
 
   @include mobile {
@@ -123,11 +133,15 @@
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  // Transform owned by framer-motion (`interactiveLift`).
+  transition: box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
     text-decoration: none;
+  }
+
+  @include tablet {
+    min-width: 180px;
   }
 
   @include mobile {

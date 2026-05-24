@@ -12,6 +12,13 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Motion layer built on `framer-motion`, device-adaptive and honoring
+  reduced-motion globally via `<MotionConfig reducedMotion="user">`:
+  scroll-triggered section/stagger entrances (`whileInView`) shared from
+  `lib/motion/variants.ts`; a hero "spotlight" (staggered headline/subline/
+  CTA on mount plus a desktop-pointer-only scroll parallax on the
+  BlockTower, gated by the new `useMediaQuery` hook); and `whileHover`/
+  `whileTap` micro-interactions on project cards and the hero/Support CTAs.
 - **CURSATS** featured as a third BitByBit project — a Lightning checkout
   for teachers and educational creators (`https://cursats.bitbybit.com.ar`,
   repo `bitbybit-ar/bitbybit-cursa`). Added to the "What we're building"
@@ -78,6 +85,15 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Projects grid no longer strands the third card bottom-left at tablet
+  widths (768–1023px): an odd last card now spans both columns and
+  centers, guarded by `:nth-child(odd)` so a future even count stays a
+  balanced 2×2.
+- Responsive polish from a full-page audit: Support CTAs ease their
+  220px min-width at tablet so the pair isn't crowded; the Support repo
+  chips get a 44px-tall tap target; and the shared `section-padding`
+  mixin now uses the `mobile` breakpoint mixin (767px) instead of a
+  one-off 768px media query.
 - Mobile footer no longer stacks the brand on top of the link list.
   Brand sits on the left, the Habits / Arena / GitHub links form a
   column on the right.
@@ -89,6 +105,9 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Removed
 
+- `useScrollReveal` hook and the `.scroll-reveal*` CSS classes in
+  `globals.scss` (superseded by the framer-motion `whileInView`
+  entrances).
 - `Team` and `LaCrypta` sections from the home page (replaced by the
   Partners carousel).
 - `OpenSource` section component (merged into the unified `Support`

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes";
+import { MotionConfig } from "framer-motion";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -15,7 +16,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       enableSystem
       enableColorScheme={false}
     >
-      {children}
+      {/* `reducedMotion="user"` makes every framer-motion animation honor
+          the OS "reduce motion" setting globally: transforms are dropped
+          and only opacity animates, so we don't repeat the guard per
+          component. */}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </NextThemesProvider>
   );
 }
