@@ -12,6 +12,13 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- **CURSATS** featured as a third BitByBit project — a Lightning checkout
+  for teachers and educational creators (`https://cursats.bitbybit.com.ar`,
+  repo `bitbybit-ar/bitbybit-cursa`). Added to the "What we're building"
+  cards (green `success` accent), the footer nav, the `Support`
+  contribute-to-a-repo row, and the homepage `ItemList` JSON-LD. The
+  projects grid now lays out three cards (three across on desktop, two on
+  tablet, stacked on mobile).
 - NIP-05 verification at `bitbybit.com.ar/.well-known/nostr.json` for
   four team identities (`anix`, `wnder`, `fabri`, `fred`), each with a
   shared relay list. Served as a static file under `public/`; a new
