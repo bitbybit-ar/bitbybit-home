@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import {
+  fadeUp,
+  fadeUpStagger,
+  staggerContainer,
+  viewportOnce,
+} from "@/lib/motion/variants";
 import { Bubble } from "@/components/common/Bubble";
 import { PixelDissolve } from "@/components/common/PixelDissolve";
 import { HeartIcon } from "@/components/icons";
@@ -62,7 +67,6 @@ const FRIENDS: Friend[] = [
 
 export function Friends() {
   const t = useTranslations("landing.friends");
-  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className={styles.section}>
@@ -115,16 +119,31 @@ export function Friends() {
         delay={3.2}
       />
 
-      <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.subtitle}>{t("subtitle")}</p>
+      <motion.div
+        className={styles.container}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        <motion.h2 className={styles.title} variants={fadeUp}>
+          {t("title")}
+        </motion.h2>
+        <motion.p className={styles.subtitle} variants={fadeUp}>
+          {t("subtitle")}
+        </motion.p>
 
-        <ul
+        <motion.ul
           className={styles.board}
           aria-label={t("listLabel")}
+          variants={fadeUpStagger}
         >
           {FRIENDS.map((friend) => (
-            <li key={friend.name} className={styles.boardItem}>
+            <motion.li
+              key={friend.name}
+              className={styles.boardItem}
+              variants={fadeUp}
+            >
               <a
                 href={friend.url}
                 target="_blank"
@@ -152,10 +171,10 @@ export function Friends() {
                   </p>
                 </div>
               </a>
-            </li>
+            </motion.li>
           ))}
-        </ul>
-      </div>
+        </motion.ul>
+      </motion.div>
 
       <div className={styles.dissolveWrapper}>
         <PixelDissolve />

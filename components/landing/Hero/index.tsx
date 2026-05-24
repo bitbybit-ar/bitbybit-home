@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "@/lib/hooks/useScrollReveal";
-import { cn } from "@/lib/utils";
+import { fadeUp, interactiveLift, staggerContainer } from "@/lib/motion/variants";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { Bubble } from "@/components/common/Bubble";
 import { BlockTower } from "@/components/common/BlockTower";
 import { PixelDissolve } from "@/components/common/PixelDissolve";
@@ -11,10 +13,21 @@ import styles from "./hero.module.scss";
 
 export function Hero() {
   const t = useTranslations("landing.hero");
-  const ref = useScrollReveal<HTMLDivElement>();
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  // Parallax is a desktop-pointer-only flourish: skip it on touch/small
+  // screens (cheaper, avoids jank) and whenever reduced motion is asked.
+  const isDesktop = useMediaQuery("(min-width: 1024px) and (pointer: fine)");
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const towerY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const enableParallax = isDesktop && !reduce;
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={sectionRef}>
       <Bubble
         size={70}
         color="gold"
@@ -64,23 +77,41 @@ export function Hero() {
         delay={3.2}
       />
 
-      <div className={cn(styles.container, "scroll-reveal")} ref={ref}>
-        <div className={styles.content}>
-          <h1 className={styles.headline}>
+      <div className={styles.container}>
+        <motion.div
+          className={styles.content}
+          initial="hidden"
+          animate="show"
+          variants={staggerContainer}
+        >
+          <motion.h1 className={styles.headline} variants={fadeUp}>
             {t.rich("headline", {
               accent: (chunks) => (
                 <span className={styles.headlineAccent}>{chunks}</span>
               ),
             })}
-          </h1>
-          <p className={styles.subline}>{t("subline")}</p>
-          <a href="#projects" className={styles.cta}>
+          </motion.h1>
+          <motion.p className={styles.subline} variants={fadeUp}>
+            {t("subline")}
+          </motion.p>
+          <motion.a
+            href="#projects"
+            className={styles.cta}
+            variants={fadeUp}
+            {...interactiveLift}
+          >
             {t("ctaLabel")}
-          </a>
-        </div>
-        <div className={styles.tower}>
+          </motion.a>
+        </motion.div>
+        {/* Tower keeps BlockTower's own block-by-block CSS assembly; framer
+            adds only a desktop scroll-parallax on `y` (gated above) so it
+            never overrides the mobile faded-background opacity. */}
+        <motion.div
+          className={styles.tower}
+          style={enableParallax ? { y: towerY } : undefined}
+        >
           <BlockTower maxBlocks={5} blockSize="large" animate />
-        </div>
+        </motion.div>
       </div>
 
       <div className={styles.dissolveWrapper}>

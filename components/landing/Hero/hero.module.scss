@@ -105,19 +105,16 @@
   font-size: $font-size-md;
   font-weight: $font-weight-bold;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  // Hover/press transform is owned by framer-motion (`interactiveLift`);
+  // only the shadow transitions here to avoid fighting over `transform`.
+  transition: box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
     text-decoration: none;
     box-shadow:
       0 8px 24px alpha($color-secondary, 35%),
       inset 0 1px 0 rgba(255, 255, 255, 0.5),
       inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  &:active {
-    transform: translateY(1px) scale(0.98);
   }
 }
 

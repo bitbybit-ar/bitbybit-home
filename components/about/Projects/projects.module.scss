@@ -49,6 +49,17 @@
 
   @include tablet {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    // An odd number of cards strands the last one alone on its row. Span
+    // both columns and center it at one-column width so it sits in the
+    // middle instead of orphaned bottom-left. The `:nth-child(odd)` guard
+    // means an even count (e.g. a 4th project) stays a balanced 2×2.
+    .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      // Half the $spacing-32 gap, so the centered card matches one column.
+      width: calc(50% - #{$spacing-16});
+    }
   }
 
   @include mobile {
@@ -71,12 +82,14 @@
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  // The lift/press transform is owned by framer-motion (`interactiveLift`
+  // in index.tsx); only the shadow transitions here so the two don't
+  // fight over the `transform` property.
+  transition: box-shadow 0.3s ease;
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    transform: translateY(-4px);
     text-decoration: none;
     box-shadow:
       0 12px 32px $card-shadow-hover,

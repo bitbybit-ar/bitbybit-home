@@ -83,60 +83,9 @@ a {
   }
 }
 
-// Scroll reveal animations
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.scroll-reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-
-  @for $i from 1 through 8 {
-    &:nth-child(#{$i}) {
-      transition-delay: #{($i - 1) * 100}ms;
-    }
-  }
-}
-
-.scroll-reveal-stagger.visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-reveal-scale {
-  opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-
-  &.visible {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-// Reduced motion
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal,
-  .scroll-reveal-stagger > *,
-  .scroll-reveal-scale {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    animation-duration: 0.01ms !important;
-  }
-}
+// Scroll-triggered reveals are now handled by framer-motion
+// (`whileInView` + lib/motion/variants.ts), with reduced motion honored
+// globally via <MotionConfig reducedMotion="user"> in the ThemeProvider.
 
 // Scrollbar
 ::-webkit-scrollbar {
