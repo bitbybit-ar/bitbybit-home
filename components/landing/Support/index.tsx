@@ -15,6 +15,7 @@ const LIGHTNING_ADDRESS =
 const PROJECT_REPOS = [
   { key: "arenaRepo", url: "https://github.com/bitbybit-ar/bitbybit-arena" },
   { key: "habitsRepo", url: "https://github.com/bitbybit-ar/bitbybit-habits" },
+  { key: "cursatsRepo", url: "https://github.com/bitbybit-ar/bitbybit-cursa" },
 ] as const;
 
 export function Support() {

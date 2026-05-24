@@ -37,16 +37,19 @@
   white-space: pre-line;
 }
 
-// Two equal-width project cards side-by-side on desktop, stacked on
-// mobile. A third card (future project) wraps to a second row at
-// 4-col grid the moment one is added.
+// Three equal-width project cards in a row on desktop, two on tablet,
+// stacked on mobile.
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: $spacing-32;
   text-align: left;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1120px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
   @include mobile {
     grid-template-columns: 1fr;
@@ -161,6 +164,10 @@
 
 .accentPurple .highlight::before {
   background: $color-nostr;
+}
+
+.accentGreen .highlight::before {
+  background: $color-accent-alt;
 }
 
 // Inner CTA — visual only (the parent `<a>` is the actual link). No

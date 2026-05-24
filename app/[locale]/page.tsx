@@ -43,6 +43,19 @@ export default async function HomePage({
           offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         },
       },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "SoftwareApplication",
+          name: "CURSATS",
+          description: t("cursatsDescription"),
+          url: "https://cursats.bitbybit.com.ar",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        },
+      },
     ],
   };
 

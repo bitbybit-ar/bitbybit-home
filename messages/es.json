@@ -8,7 +8,8 @@
     "ogTagline": "Hábitos saludables, comunidad y software libre.",
     "skipToContent": "Saltar al contenido",
     "habitsDescription": "Tracker de hábitos saludables con recompensas en Bitcoin Lightning.",
-    "arenaDescription": "Desafíos públicos sobre Nostr — competí, ganá badges y sats."
+    "arenaDescription": "Desafíos públicos sobre Nostr — competí, ganá badges y sats.",
+    "cursatsDescription": "Checkout Lightning para profes y creadores: el comprador paga en sats, el vendedor cobra en pesos o sats."
   },
   "navbar": {
     "mission": "Misión",
@@ -24,6 +25,7 @@
     "ariaLabel": "Proyectos de BitByBit",
     "habitsLink": "BitByBit Habits",
     "arenaLink": "BitByBit Arena",
+    "cursatsLink": "CURSATS",
     "github": "GitHub",
     "githubAriaLabel": "BitByBit en GitHub"
   },
@@ -38,7 +40,7 @@
     },
     "projects": {
       "title": "Lo que estamos construyendo",
-      "subtitle": "Dos apps reales, lanzadas en hackathons de La Crypta.\nProbalas y contanos qué pensás.",
+      "subtitle": "Tres apps reales, lanzadas en hackathons de La Crypta.\nProbalas y contanos qué pensás.",
       "habitsName": "BitByBit Habits",
       "habitsTagline": "Tracker familiar de hábitos con recompensas en sats vía Lightning.",
       "habitsStory": "Habits convierte la mesada en una herramienta de educación financiera. Los padres asignan hábitos con recompensas en sats; los hijos los completan y reciben Bitcoin real al instante vía Lightning. Mesada 2.0.",
@@ -52,7 +54,14 @@
       "arenaHighlight1": "**Nostr-native** · Identidad, pruebas y pagos",
       "arenaHighlight2": "**Badges NIP-58** · Logros portables entre clientes",
       "arenaHighlight3": "**Sin permisos** · Cualquiera crea, cualquiera compite",
-      "arenaCta": "Entrá a Arena"
+      "arenaCta": "Entrá a Arena",
+      "cursatsName": "CURSATS",
+      "cursatsTagline": "Checkout Lightning para profes — el comprador paga en sats, vos cobrás como quieras.",
+      "cursatsStory": "CURSATS convierte cualquier clase o curso en un checkout Lightning. El comprador siempre paga en sats; el vendedor elige cómo recibir: pesos a su CBU vía Wapu, o sats a su Lightning Address.",
+      "cursatsHighlight1": "**Dos rieles de cobro** · Pesos vía Wapu o sats a tu wallet",
+      "cursatsHighlight2": "**El comprador paga en sats** · Vos elegís cómo recibir",
+      "cursatsHighlight3": "**Hecho para educar** · Profes, tutores y academias",
+      "cursatsCta": "Probá CURSATS"
     }
   },
   "landing": {
@@ -79,7 +88,8 @@
       "starOnGithub": "Dar estrella en GitHub",
       "orContribute": "O contribuí a un proyecto específico",
       "arenaRepo": "Arena en GitHub",
-      "habitsRepo": "Habits en GitHub"
+      "habitsRepo": "Habits en GitHub",
+      "cursatsRepo": "CURSATS en GitHub"
     }
   }
 }

@@ -32,6 +32,14 @@ export function Footer() {
             {t("arenaLink")}
           </a>
           <a
+            href="https://cursats.bitbybit.com.ar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            {t("cursatsLink")}
+          </a>
+          <a
             href="https://github.com/bitbybit-ar"
             target="_blank"
             rel="noopener noreferrer"

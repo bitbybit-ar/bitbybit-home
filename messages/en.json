@@ -8,7 +8,8 @@
     "ogTagline": "Healthy habits, community, and open-source software.",
     "skipToContent": "Skip to content",
     "habitsDescription": "Healthy-habit tracker with Bitcoin Lightning rewards.",
-    "arenaDescription": "Public challenges over Nostr — compete, earn badges and sats."
+    "arenaDescription": "Public challenges over Nostr — compete, earn badges and sats.",
+    "cursatsDescription": "Lightning checkout for teachers and creators: buyers pay in sats, sellers get pesos or sats."
   },
   "navbar": {
     "mission": "Mission",
@@ -24,6 +25,7 @@
     "ariaLabel": "BitByBit projects",
     "habitsLink": "BitByBit Habits",
     "arenaLink": "BitByBit Arena",
+    "cursatsLink": "CURSATS",
     "github": "GitHub",
     "githubAriaLabel": "BitByBit on GitHub"
   },
@@ -38,7 +40,7 @@
     },
     "projects": {
       "title": "What we're building",
-      "subtitle": "Two real apps, shipped at La Crypta hackathons.\nTry them and let us know what you think.",
+      "subtitle": "Three real apps, shipped at La Crypta hackathons.\nTry them and let us know what you think.",
       "habitsName": "BitByBit Habits",
       "habitsTagline": "Family habit tracker with sat rewards over Lightning.",
       "habitsStory": "Habits turns 'la mesada' (the kid's allowance) into a tool for financial education. Parents assign habits with sat rewards; kids complete them and receive real Bitcoin instantly via Lightning. Mesada 2.0.",
@@ -52,7 +54,14 @@
       "arenaHighlight1": "**Nostr-native** · Identity, proofs, and payouts",
       "arenaHighlight2": "**NIP-58 badges** · Achievements that travel with you",
       "arenaHighlight3": "**Permissionless** · Anyone creates, anyone competes",
-      "arenaCta": "Enter Arena"
+      "arenaCta": "Enter Arena",
+      "cursatsName": "CURSATS",
+      "cursatsTagline": "Lightning checkout for teachers — buyers pay in sats, you choose how to get paid.",
+      "cursatsStory": "CURSATS turns any class or course into a Lightning checkout. Buyers always pay in sats; the seller picks how the money arrives — pesos to a CBU via Wapu, or sats to a Lightning Address.",
+      "cursatsHighlight1": "**Two payout rails** · Pesos via Wapu or sats to your wallet",
+      "cursatsHighlight2": "**Buyers pay in sats** · You choose how to get paid",
+      "cursatsHighlight3": "**Built for educators** · Teachers, tutors and academies",
+      "cursatsCta": "Try CURSATS"
     }
   },
   "landing": {
@@ -79,7 +88,8 @@
       "starOnGithub": "Star on GitHub",
       "orContribute": "Or contribute to a specific project",
       "arenaRepo": "Arena on GitHub",
-      "habitsRepo": "Habits on GitHub"
+      "habitsRepo": "Habits on GitHub",
+      "cursatsRepo": "CURSATS on GitHub"
     }
   }
 }
