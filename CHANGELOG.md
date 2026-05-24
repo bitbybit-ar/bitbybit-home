@@ -65,6 +65,14 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Open Graph image (`app/[locale]/opengraph-image.tsx`) reworked into a
+  centered brand lockup. The vertical three-block mark (purple/gold/green)
+  now sits beside an oversized `BitByBit` wordmark as the focal point, with
+  the tagline (`ogTagline`) as a smaller line below — the long headline was
+  dropped since the link preview already shows it as the title. Text now
+  renders in the platform font (Nunito 800 / Nunito Sans 600, subset-loaded
+  from the Google Fonts CSS API) instead of the previous `sans-serif`
+  fallback, so social shares match the site's typography.
 - BlockTower assembly reworked to framer-motion. All blocks now mount at
   once so the tower reserves its full height on the first frame and no
   longer drifts as it builds (the old `setInterval` insert grew the stack
