@@ -56,6 +56,19 @@ export default async function HomePage({
           offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         },
       },
+      {
+        "@type": "ListItem",
+        position: 4,
+        item: {
+          "@type": "SoftwareApplication",
+          name: "BitByBit Run",
+          description: t("runDescription"),
+          url: "https://run.bitbybit.com.ar",
+          applicationCategory: "GameApplication",
+          operatingSystem: "Web",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        },
+      },
     ],
   };
 

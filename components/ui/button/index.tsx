@@ -10,6 +10,7 @@ type ButtonBaseProps = {
     | "accent"
     | "nostr"
     | "success"
+    | "info"
     | "danger"
     | "outline"
     | "ghost"

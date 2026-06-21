@@ -9,7 +9,8 @@
     "skipToContent": "Saltar al contenido",
     "habitsDescription": "Tracker de hábitos saludables con recompensas en Bitcoin Lightning.",
     "arenaDescription": "Desafíos públicos sobre Nostr — competí, ganá badges y sats.",
-    "cursatsDescription": "Checkout Lightning para profes y creadores: el comprador paga en sats, el vendedor cobra en pesos o sats."
+    "cursatsDescription": "Checkout Lightning para profes y creadores: el comprador paga en sats, el vendedor cobra en pesos o sats.",
+    "runDescription": "Juego de carreras multijugador libre en la web — login con Nostr y recompensas Lightning para el ganador."
   },
   "navbar": {
     "mission": "Misión",
@@ -26,6 +27,7 @@
     "habitsLink": "BitByBit Habits",
     "arenaLink": "BitByBit Arena",
     "cursatsLink": "CURSATS",
+    "runLink": "BitByBit Run",
     "github": "GitHub",
     "githubAriaLabel": "BitByBit en GitHub"
   },
@@ -40,7 +42,7 @@
     },
     "projects": {
       "title": "Lo que estamos construyendo",
-      "subtitle": "Tres apps reales, lanzadas en hackathons de La Crypta.\nProbalas y contanos qué pensás.",
+      "subtitle": "Cuatro apps reales, lanzadas en hackathons de La Crypta.\nProbalas y contanos qué pensás.",
       "habitsName": "BitByBit Habits",
       "habitsTagline": "Tracker familiar de hábitos con recompensas en sats vía Lightning.",
       "habitsStory": "Habits convierte la mesada en una herramienta de educación financiera. Los padres asignan hábitos con recompensas en sats; los hijos los completan y reciben Bitcoin real al instante vía Lightning. Mesada 2.0.",
@@ -61,7 +63,14 @@
       "cursatsHighlight1": "**Dos rieles de cobro** · Pesos vía Wapu o sats a tu wallet",
       "cursatsHighlight2": "**El comprador paga en sats** · Vos elegís cómo recibir",
       "cursatsHighlight3": "**Hecho para educar** · Profes, tutores y academias",
-      "cursatsCta": "Probá CURSATS"
+      "cursatsCta": "Probá CURSATS",
+      "runName": "BitByBit Run",
+      "runTagline": "Carreras multijugador en la web — corré, cargá combustible y ganá zaps.",
+      "runStory": "Run es un juego de carreras multijugador, libre y liviano: hasta 8 corredores se alinean en una pista de atletismo y sprintan hacia la meta. Cargá combustible en las estaciones del camino para mantener el ritmo — pero elegí bien, no todo lo que hay en la pista te conviene. El primero en cruzar gana, y al ganador lo zapean en sats.",
+      "runHighlight1": "**Hasta 8 jugadores** · Carreras en tiempo real en el navegador",
+      "runHighlight2": "**Nostr-native** · Entrá con tus llaves, sin registro",
+      "runHighlight3": "**El ganador recibe zaps** · Sats vía Lightning para el primero",
+      "runCta": "Jugá a Run"
     }
   },
   "landing": {
@@ -90,7 +99,8 @@
       "orContribute": "O contribuí a un proyecto específico",
       "arenaRepo": "Arena en GitHub",
       "habitsRepo": "Habits en GitHub",
-      "cursatsRepo": "CURSATS en GitHub"
+      "cursatsRepo": "CURSATS en GitHub",
+      "runRepo": "Run en GitHub"
     }
   }
 }

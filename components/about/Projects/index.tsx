@@ -19,10 +19,10 @@ import styles from "./projects.module.scss";
 const HIGHLIGHT_KEYS = ["highlight1", "highlight2", "highlight3"] as const;
 
 interface ProjectCard {
-  prefix: "habits" | "arena" | "cursats";
+  prefix: "habits" | "arena" | "cursats" | "run";
   url: string;
   accentClass: string;
-  buttonVariant: "accent" | "nostr" | "success";
+  buttonVariant: "accent" | "nostr" | "success" | "info";
 }
 
 const PROJECTS: ProjectCard[] = [
@@ -43,6 +43,12 @@ const PROJECTS: ProjectCard[] = [
     url: "https://cursats.bitbybit.com.ar",
     accentClass: "accentGreen",
     buttonVariant: "success",
+  },
+  {
+    prefix: "run",
+    url: "https://run.bitbybit.com.ar",
+    accentClass: "accentBlue",
+    buttonVariant: "info",
   },
 ];
 

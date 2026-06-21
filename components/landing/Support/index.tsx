@@ -22,6 +22,7 @@ const PROJECT_REPOS = [
   { key: "arenaRepo", url: "https://github.com/bitbybit-ar/bitbybit-arena" },
   { key: "habitsRepo", url: "https://github.com/bitbybit-ar/bitbybit-habits" },
   { key: "cursatsRepo", url: "https://github.com/bitbybit-ar/bitbybit-cursa" },
+  { key: "runRepo", url: "https://github.com/bitbybit-ar/bitbybit-run" },
 ] as const;
 
 export function Support() {
