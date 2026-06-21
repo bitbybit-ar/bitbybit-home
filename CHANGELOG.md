@@ -12,6 +12,14 @@ versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- **BitByBit Run** featured as a fourth BitByBit project — a free,
+  web-based multiplayer runner racing game with Nostr login and Lightning
+  rewards for the winner (`https://run.bitbybit.com.ar`, repo
+  `bitbybit-ar/bitbybit-run`). Added to the "What we're building" cards
+  (new blue `info` accent and `variant-info` Button), the footer nav, the
+  `Support` contribute-to-a-repo row, and the homepage `ItemList` JSON-LD
+  (`GameApplication`). The projects grid now lays out four cards in a
+  balanced 2×2 on desktop and tablet, stacked on mobile.
 - Motion layer built on `framer-motion`, device-adaptive and honoring
   reduced-motion globally via `<MotionConfig reducedMotion="user">`:
   scroll-triggered section/stagger entrances (`whileInView`) shared from

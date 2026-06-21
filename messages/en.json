@@ -9,7 +9,8 @@
     "skipToContent": "Skip to content",
     "habitsDescription": "Healthy-habit tracker with Bitcoin Lightning rewards.",
     "arenaDescription": "Public challenges over Nostr — compete, earn badges and sats.",
-    "cursatsDescription": "Lightning checkout for teachers and creators: buyers pay in sats, sellers get pesos or sats."
+    "cursatsDescription": "Lightning checkout for teachers and creators: buyers pay in sats, sellers get pesos or sats.",
+    "runDescription": "Free multiplayer runner racing game on the web — Nostr login, Lightning rewards for the winner."
   },
   "navbar": {
     "mission": "Mission",
@@ -26,6 +27,7 @@
     "habitsLink": "BitByBit Habits",
     "arenaLink": "BitByBit Arena",
     "cursatsLink": "CURSATS",
+    "runLink": "BitByBit Run",
     "github": "GitHub",
     "githubAriaLabel": "BitByBit on GitHub"
   },
@@ -40,7 +42,7 @@
     },
     "projects": {
       "title": "What we're building",
-      "subtitle": "Three real apps, shipped at La Crypta hackathons.\nTry them and let us know what you think.",
+      "subtitle": "Four real apps, shipped at La Crypta hackathons.\nTry them and let us know what you think.",
       "habitsName": "BitByBit Habits",
       "habitsTagline": "Family habit tracker with sat rewards over Lightning.",
       "habitsStory": "Habits turns 'la mesada' (the kid's allowance) into a tool for financial education. Parents assign habits with sat rewards; kids complete them and receive real Bitcoin instantly via Lightning. Mesada 2.0.",
@@ -61,7 +63,14 @@
       "cursatsHighlight1": "**Two payout rails** · Pesos via Wapu or sats to your wallet",
       "cursatsHighlight2": "**Buyers pay in sats** · You choose how to get paid",
       "cursatsHighlight3": "**Built for educators** · Teachers, tutors and academies",
-      "cursatsCta": "Try CURSATS"
+      "cursatsCta": "Try CURSATS",
+      "runName": "BitByBit Run",
+      "runTagline": "Multiplayer runner racing on the web — sprint, fuel up, get zapped.",
+      "runStory": "Run is a free, lightweight multiplayer racing game: up to 8 runners line up on an athletics track and sprint for the finish. Fuel up at the stations along the way to keep your pace — but choose wisely, not everything on the track is good for you. First across the line wins, and the winner gets zapped in sats.",
+      "runHighlight1": "**Up to 8 players** · Real-time browser races",
+      "runHighlight2": "**Nostr-native** · Log in with your keys, no signup",
+      "runHighlight3": "**Winner gets zapped** · Lightning sats for first place",
+      "runCta": "Play Run"
     }
   },
   "landing": {
@@ -90,7 +99,8 @@
       "orContribute": "Or contribute to a specific project",
       "arenaRepo": "Arena on GitHub",
       "habitsRepo": "Habits on GitHub",
-      "cursatsRepo": "CURSATS on GitHub"
+      "cursatsRepo": "CURSATS on GitHub",
+      "runRepo": "Run on GitHub"
     }
   }
 }
